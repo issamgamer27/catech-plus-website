@@ -17,6 +17,7 @@ import {
   Menu,
   X
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useState } from "react";
 
 const whatsapp = "https://wa.me/213XXXXXXXXX";
@@ -28,6 +29,18 @@ const categories = [
   ["Manettes & casques", "DualSense, casques et audio immersif.", Headphones],
   ["Livraison en Algérie", "Commande simple et expédition dans les 48 wilayas.", Truck]
 ] as const;
+
+type ServiceHighlight = {
+  text: string;
+  icon: LucideIcon;
+};
+
+const serviceHighlights: ServiceHighlight[] = [
+  { text: "Produits gaming de qualité", icon: ShieldCheck },
+  { text: "Livraison partout en Algérie", icon: Truck },
+  { text: "Service rapide et fiable", icon: Star },
+  { text: "Conseils pour gamers et tech lovers", icon: Gamepad2 }
+];
 
 const featured = ["Jeu PlayStation", "Manette DualSense", "Casque Gaming", "Clavier Gaming", "Souris Gaming", "Accessoires PC"];
 
@@ -66,7 +79,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-7xl px-4 py-16 md:px-8"><h2 className="section-title">Produits vedettes</h2><div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{featured.map((name)=> <article key={name} className="glass rounded-2xl p-4"><div className="mb-4 grid h-40 place-content-center rounded-xl bg-gradient-to-br from-white/10 to-white/0"><span className="text-white/40">Image produit</span></div><h3 className="font-medium">{name}</h3><p className="text-sm text-white/60">Gaming / Informatique</p><p className="mt-2 text-neon">Prix sur demande</p><Link href={whatsapp} className="mt-4 inline-flex items-center gap-2 rounded-full border border-neon/60 px-4 py-2 text-sm"><MessageCircle size={16}/>Commander</Link></article>)}</div></section>
 
-      <section id="services" className="mx-auto max-w-7xl px-4 py-16 md:px-8"><h2 className="section-title">Pourquoi choisir Catech+ ?</h2><div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{[["Produits gaming de qualité",ShieldCheck],["Livraison partout en Algérie",Truck],["Service rapide et fiable",Star],["Conseils pour gamers et tech lovers",Gamepad2]].map(([t,I])=> <div key={String(t)} className="glass rounded-2xl p-5"><I className="text-neon"/><p className="mt-3 text-sm">{t}</p></div>)}</div></section>
+      <section id="services" className="mx-auto max-w-7xl px-4 py-16 md:px-8"><h2 className="section-title">Pourquoi choisir Catech+ ?</h2><div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{serviceHighlights.map(({ text, icon: Icon })=> <div key={text} className="glass rounded-2xl p-5"><Icon className="text-neon"/><p className="mt-3 text-sm">{text}</p></div>)}</div></section>
 
       <section id="livraison" className="mx-auto max-w-7xl px-4 py-10 md:px-8"><div className="grid gap-4 rounded-2xl border border-white/10 bg-panel/60 p-6 text-center sm:grid-cols-2 lg:grid-cols-4">{[["+500","Clients satisfaits"],["+100","Produits disponibles"],["48","Wilayas livrées"],["Support","Rapide"]].map(([n,l])=><motion.div key={String(l)} initial={{opacity:0,y:10}} whileInView={{opacity:1,y:0}} viewport={{once:true}}><p className="text-3xl font-bold text-neon">{n}</p><p className="text-sm text-white/70">{l}</p></motion.div>)}</div></section>
 
