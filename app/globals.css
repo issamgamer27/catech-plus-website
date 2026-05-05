@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body {
+  @apply bg-bg text-white antialiased;
+  background-image: radial-gradient(circle at 20% 20%, rgba(255, 46, 77, 0.18), transparent 45%), radial-gradient(circle at 80% 0%, rgba(149, 33, 56, 0.2), transparent 35%);
+}
+.glass {
+  @apply border border-white/10 bg-white/5 backdrop-blur-xl;
+}
+.section-title {
+  @apply text-2xl md:text-3xl font-semibold tracking-tight;
+}
